@@ -14,9 +14,33 @@ const { NotImplementedError } = require('../lib');
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function isMAC48Address(inputString) {
+  if (typeof inputString !== 'string') {
+    return false;
+  }
+  
+  // Split by hyphens
+  const parts = inputString.split('-');
+  
+  // Check if we have exactly 6 parts
+  if (parts.length !== 6) {
+    return false;
+  }
+  
+  // Check each part
+  for (let part of parts) {
+    // Each part should be exactly 2 characters
+    if (part.length !== 2) {
+      return false;
+    }
+    
+    // Each character should be a valid hexadecimal digit
+    if (!/^[0-9A-F]{2}$/.test(part)) {
+      return false;
+    }
+  }
+  
+  return true;
 }
 
 module.exports = {

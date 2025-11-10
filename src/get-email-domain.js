@@ -10,8 +10,16 @@ const { NotImplementedError } = require('../lib');
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
  */
-function getEmailDomain(/* email */) {
-  throw new NotImplementedError('Not implemented');
+function getEmailDomain(email) {
+  // Find the index of '@'
+  const atIndex = email.indexOf('@');
+
+  // Return the substring after '@'
+  if (atIndex !== -1) {
+    return email.slice(atIndex + 1);
+  }
+  // If '@' not found, return empty string or handle error as needed
+  return '';
 }
 
 module.exports = {

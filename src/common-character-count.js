@@ -12,9 +12,30 @@ const { NotImplementedError } = require('../lib');
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 
-function getCommonCharacterCount(/* s1, s2 */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function getCommonCharacterCount(s1, s2) {
+  const countMap1 = {};
+  const countMap2 = {};
+
+  // Count characters in s1
+  for (const char of s1) {
+    countMap1[char] = (countMap1[char] || 0) + 1;
+  }
+
+  // Count characters in s2
+  for (const char of s2) {
+    countMap2[char] = (countMap2[char] || 0) + 1;
+  }
+
+  let commonCount = 0;
+
+  // For each character in s1's map, add the minimum count found in s2's map
+  for (const char in countMap1) {
+    if (countMap2[char]) {
+      commonCount += Math.min(countMap1[char], countMap2[char]);
+    }
+  }
+
+  return commonCount;
 }
 
 module.exports = {
